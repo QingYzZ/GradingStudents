@@ -39,8 +39,14 @@ int Student::addProject(string &projectName, int numTests) {
 	}
 
 	Project new_project(projectName, numTests);
-
 	projectMap[projectName] = new_project;
-	
 	return SUCCESS;
+}
+
+bool Student::findProject(const string &projectName) {
+	if (projectMap.find(projectName) == projectMap.end()) {
+		return false; /* not found */
+	} else {
+		return true; /* found */
+	}
 }

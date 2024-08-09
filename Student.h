@@ -19,9 +19,10 @@ class Student {
 	int checkScore(const string &projectName, bool ifBest);
 	int updateScore(const string &projectName, list<int> *testResults, bool ifBest);
 	int addProject(string &projectName, int numTests);
+	bool findProject(const string &projectName);
 
 	private:
 	string name;
 	int gpa;
-	unordered_map<string, Project> projectMap; /* <projectName, ProjectObject> */
+	unordered_map<const string, Project> projectMap; /* <projectName, ProjectObject> */
 };

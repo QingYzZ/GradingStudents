@@ -40,6 +40,7 @@ int Server::addStudent(const string &name) {
 int Server::addSubmission(const string &projectName, const string &name, list<int> *testResults) {
 	/* check parameters are valid */
 	if (projectName.empty() || name.empty() || testResults->empty() || 
+	!studentMap[name].findProject(projectName) || 
 	studentMap[name].getSubmissionNumber(projectName) >= maxSubmission) {
 		return FAILURE;
 	}
@@ -59,7 +60,8 @@ int Server::addSubmission(const string &projectName, const string &name, list<in
 		return FAILURE;
 	}
 
-	int bestTotalScore = studentMap[name].checkScore(projectName, true); /* this is getting the best total score */
+	/* this is getting the best total score */
+	int bestTotalScore = studentMap[name].checkScore(projectName, true); 
 	int inputTotalScore = getTotalScore(testResults);
 
 	if(inputTotalScore >= bestTotalScore) { /* check if best scores list should be updated */
@@ -95,4 +97,11 @@ int Server::getBestScore(const string &projectname, const string &name) {
 	return SUCCESS;
 }
 
+bool Server::findProject(const string &projectName, const string &studentName) {
+	if (projectName.empty() || studentName.empty()) {
+		return FAILURE;
+	}
+
+	return studentMap[studentName].findProject(projectName);
+}
 

@@ -17,6 +17,7 @@ class Server {
 	int addSubmission(const string &projectName, const string &name, list<int> *testResults);
 	int getTotalScore(list<int> *testResults);
 	int getBestScore(const string &projectName, const string &name);
+	bool findProject(const string &projectName, const string &studentName);
 	
 	private:
 	int numOfStudents;
