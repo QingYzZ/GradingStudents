@@ -15,7 +15,7 @@ class Project {
 	private:
 	string name;
 	int numTests; /* number of tests a student should at least have */
-
+	int numSubmissions; /* number of submission on this project by a student */
 	list<int> currentScores; /* keeps track of current test scores */
 	list<int> currentBestScores; /* keeps track of the test scores that have the highest total */
 };

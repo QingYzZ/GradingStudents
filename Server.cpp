@@ -41,7 +41,7 @@ int Server::addStudent(const string &name) {
 int Server::addSubmission(const string &projectName, const string &name, list<int> *testResults) {
 	/* check parameters are valid */
 	if (projectName.empty() || name.empty() || testResults->empty() || 
-	studentMap[name].getSubmissionNumber() >= maxSubmission) {
+	studentMap[name].getSubmissionNumber(projectName) >= maxSubmission) {
 		return FAILURE;
 	}
 
@@ -56,22 +56,22 @@ int Server::addSubmission(const string &projectName, const string &name, list<in
     }
 
 	/* checking if any test is missing */
-	if (countTests < projectMap[projectName].getNumTests()) {
+	if (countTests < studentMap[name].getNumTests(projectName)) {
 		return FAILURE;
 	}
 
-	int bestTotalScore = projectMap[projectName].getScore(true); /* this is getting the best total score */
-	int currentTotalScore = getTotalScore(testResults);
+	int bestTotalScore = studentMap[name].checkScore(projectName, true); /* this is getting the best total score */
+	int inputTotalScore = getTotalScore(testResults);
 
-	if(currentTotalScore >= bestTotalScore) { /* check if best scores list should be updated */
-		projectMap[projectName].updateScores(testResults, true); /* update the best score list */
+	if(inputTotalScore >= bestTotalScore) { /* check if best scores list should be updated */
+		studentMap[name].updateScore(projectName, testResults, true); /* update the best score list */
 	}
 	
 	/* always update the current scores list */
-	projectMap[projectName].updateScores(testResults, false);
+	studentMap[name].updateScore(projectName, testResults, false);
 
 	/* increase the number of submissions made by that student by 1 */
-	studentMap[name].increaseSubmissionNumber(); 
+	studentMap[name].increaseSubmissionNumber(projectName); 
 	return SUCCESS;
 }
 
@@ -83,9 +83,8 @@ int Server::getTotalScore(list<int> *testResults) {
 	return total;
 }
 
-
-
-
-
-
+int Server::getBestScore(const string &projectname, const string &name) {
+	studentMap[name].checkScore(projectname, true);
+	return SUCCESS;
+}
 
