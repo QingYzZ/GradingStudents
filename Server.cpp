@@ -41,7 +41,8 @@ int Server::addStudent(const string &name) {
 
 int Server::addSubmission(const string &projectName, const string &name, list<int> *testResults) {
 	/* check parameters are valid */
-	if (projectName.empty() || name.empty() || testResults->empty()) {
+	if (projectName.empty() || name.empty() || testResults->empty() || 
+	studentMap[name].getSubmissionNumber() >= maxSubmission) {
 		return FAILURE;
 	}
 
@@ -60,23 +61,30 @@ int Server::addSubmission(const string &projectName, const string &name, list<in
 		return FAILURE;
 	}
 
-	if (projectMap[projectName].checkGFA() == FAILURE) {
-		return FAILURE;
-	}
-
 	int bestTotalScore = projectMap[projectName].getScore(true); /* this is getting the best total score */
 	int currentTotalScore = getTotalScore(testResults);
 
+	if(currentTotalScore >= bestTotalScore) { /* check if best scores list should be updated */
+		projectMap[projectName].updateScores(testResults, true); /* update the best score list */
+	}
+	
+	/* always update the current scores list */
+	projectMap[projectName].updateScores(testResults, false);
+
+	/* increase the number of submissions made by that student by 1*/
+	studentMap[name].increaseSubmissionNumber(); 
 	return SUCCESS;
 }
 
-int getTotalScore(list<int> *testResults) {
+int Server::getTotalScore(list<int> *testResults) {
 	int total = 0;
 	for(list<int>::const_iterator it = testResults->begin(); it != testResults->end(); it++) {
 		total += *it;
 	}
 	return total;
 }
+
+
 
 
 

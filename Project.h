@@ -10,6 +10,7 @@ class Project {
 	int getNumTests() { return numTests;} /* get the number of tests */
 	int checkGFA(); /* check if  */
 	int getScore(bool ifBest); /* get the total score of current tests scores */
+	int updateScores(list<int> *testScores, bool ifBest);
 
 	private:
 	string name;

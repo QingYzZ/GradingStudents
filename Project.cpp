@@ -25,3 +25,15 @@ int Project::getScore(bool ifBest) {
 	return total;
 }
 
+int Project::updateScores(list<int> *testScores, bool ifBest) {
+	if (testScores == nullptr) {
+		return FAILURE;
+	}
+
+	if (ifBest) {
+		currentBestScores = *testScores;
+	}else {
+		currentScores = *testScores;
+	}
+	return SUCCESS;
+}
