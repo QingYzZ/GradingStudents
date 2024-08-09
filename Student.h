@@ -13,7 +13,6 @@ class Student {
 
 	int increaseSubmissionNumber(const string &projectName);
 	int getSubmissionNumber(const string &projectName);
-	int setMaxSubmission(const string &projectName);
 	int getNumTests(const string &projectName) { return projectMap[projectName].getNumTests();}
 	int checkScore(const string &projectName, bool ifBest);
 	int updateScore(const string &projectName, list<int> *testResults, bool ifBest);

@@ -18,3 +18,10 @@ int Student::checkScore(const string &projectName, bool ifBest) {
 int Student::updateScore(const string &projectName, list<int> *testResults, bool ifBest) {
 	return projectMap[projectName].updateScores(testResults, ifBest);
 }
+
+int Student::increaseSubmissionNumber(const string &projectName) {
+	projectMap[projectName].increaseSubmissions();
+	return SUCCESS;
+}
+
+int 
