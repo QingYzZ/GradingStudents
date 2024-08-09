@@ -16,6 +16,7 @@ class Server {
 	int addStudent(const string &name);
 	int addSubmission(const string &projectName, const string &name, list<int> *testResults);
 	int getTotalScore(list<int> *testResults);
+	int getBestScore(const string &name);
 	
 	private:
 	int maxSubmission;

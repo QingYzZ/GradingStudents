@@ -6,7 +6,6 @@
 #include "Student.cpp"
 #include "Student.h"
 #include "Project.h"
-
 #include "GRADING_STUDENTS_MACROS.h"
 
 using namespace std;
@@ -35,7 +34,7 @@ int Server::addStudent(const string &name) {
 	}
 	numOfStudents++;
 	Student new_student(name); /* create a new student */
-	studentMap[name] = new_student; /* insert new_student with key name */
+	studentMap.emplace(name, new_student); /* insert new_student with key name */
     return SUCCESS;
 }
 
@@ -71,7 +70,7 @@ int Server::addSubmission(const string &projectName, const string &name, list<in
 	/* always update the current scores list */
 	projectMap[projectName].updateScores(testResults, false);
 
-	/* increase the number of submissions made by that student by 1*/
+	/* increase the number of submissions made by that student by 1 */
 	studentMap[name].increaseSubmissionNumber(); 
 	return SUCCESS;
 }
@@ -83,6 +82,8 @@ int Server::getTotalScore(list<int> *testResults) {
 	}
 	return total;
 }
+
+
 
 
 
