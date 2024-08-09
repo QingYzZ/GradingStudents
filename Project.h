@@ -6,12 +6,15 @@ using namespace std;
 
 class Project {
 	public:
+	Project();
+	Project(const string &name, int numTests);
 	int modifyTestsNumber(int desiredNumTests);
 	int getNumTests() { return numTests;} /* get the number of tests */
 	int checkGFA(); /* check if  */
 	int getScore(bool ifBest); /* get the total score of current tests scores */
 	int updateScores(list<int> *testScores, bool ifBest);
 	void increaseSubmissions() { numSubmissions++;}
+	int getSubmissionNumber() { return numSubmissions;}
 
 	private:
 	string name;

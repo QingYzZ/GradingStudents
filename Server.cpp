@@ -3,7 +3,6 @@
 #include <list>
 
 #include "Server.h"
-#include "Student.cpp"
 #include "Student.h"
 #include "Project.h"
 #include "GRADING_STUDENTS_MACROS.h"
@@ -76,15 +75,24 @@ int Server::addSubmission(const string &projectName, const string &name, list<in
 }
 
 int Server::getTotalScore(list<int> *testResults) {
+	if (testResults == nullptr || testResults->size() < MIN_TESTS) {
+		return FAILURE;
+	}
+
 	int total = 0;
 	for(list<int>::const_iterator it = testResults->begin(); it != testResults->end(); it++) {
 		total += *it;
 	}
+
 	return total;
 }
 
 int Server::getBestScore(const string &projectname, const string &name) {
+	if (projectname.empty() || name.empty()) {
+		return FAILURE;
+	}
 	studentMap[name].checkScore(projectname, true);
 	return SUCCESS;
 }
+
 
