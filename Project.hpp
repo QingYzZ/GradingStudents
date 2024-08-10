@@ -1,6 +1,8 @@
+#ifndef PROJECT_HPP
+#define PROJECT_HPP
 #include <string>
 #include <list>
-#include "GRADING_STUDENTS_MACROS.h"
+#include "GRADING_STUDENTS_MACROS.hpp"
 
 using namespace std;
 
@@ -23,3 +25,5 @@ class Project {
 	list<int> currentScores; /* keeps track of current test scores */
 	list<int> currentBestScores; /* keeps track of the test scores that have the highest total */
 };
+
+#endif

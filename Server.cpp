@@ -2,10 +2,7 @@
 #include <unordered_map>
 #include <list>
 
-#include "Server.h"
-#include "Student.h"
-#include "Project.h"
-#include "GRADING_STUDENTS_MACROS.h"
+#include "Server.hpp"
 
 using namespace std;
 
@@ -33,7 +30,7 @@ int Server::addStudent(const string &name) {
 	}
 	numOfStudents++;
 	Student new_student(name); /* create a new student */
-	studentMap.emplace(name, new_student); /* insert new_student with key name */
+	studentMap[name] = new_student; /* insert new_student with key name */
     return SUCCESS;
 }
 

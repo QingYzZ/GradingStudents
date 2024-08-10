@@ -1,8 +1,11 @@
+#ifndef STUDENT_HPP
+#define STUDENT_HPP
+
 #include <string>
 #include <unordered_map>
 
-#include "GRADING_STUDENTS_MACROS.h"
-#include "Project.h"
+#include "GRADING_STUDENTS_MACROS.hpp"
+#include "Project.hpp"
 
 
 using namespace std;
@@ -20,9 +23,13 @@ class Student {
 	int updateScore(const string &projectName, list<int> *testResults, bool ifBest);
 	int addProject(string &projectName, int numTests);
 	bool findProject(const string &projectName);
+	string getName() { return name;}
+
 
 	private:
 	string name;
-	int gpa;
-	unordered_map<const string, Project> projectMap; /* <projectName, ProjectObject> */
+	double gpa;
+	unordered_map<string, Project> projectMap; /* <projectName, ProjectObject> */
 };
+
+#endif

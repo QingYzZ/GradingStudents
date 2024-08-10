@@ -1,9 +1,11 @@
+#ifndef SERVER_HPP
+#define SERVER_HPP
 #include <string>
 #include <unordered_map>
 #include <list>
 
-#include "Student.h"
-#include "Project.h"
+#include "Student.hpp"
+#include "Project.hpp"
 using namespace std;
 
 class Server {
@@ -25,3 +27,5 @@ class Server {
 	unordered_map<string, Student> studentMap;
 
 };
+
+#endif

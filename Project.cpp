@@ -1,8 +1,7 @@
 #include <iostream>
 #include <list>
 
-#include "GRADING_STUDENTS_MACROS.h"
-#include "Project.h"
+#include "Project.hpp"
 
 
 Project::Project() {
@@ -13,9 +12,11 @@ Project::Project() {
 
 Project::Project(const string &name, int numTests) {
 	if (name.empty() || numTests < MIN_TESTS) {
-		Project();
+		numTests = MIN_TESTS;
+		this->name = "DEFAULT PROJECT NAME";
+		numSubmissions = 0;
 	} else {
-		Project();
+			numSubmissions = 0;
 		this->name = name;
 		this->numTests = numTests;
 	}

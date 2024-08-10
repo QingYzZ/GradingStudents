@@ -2,13 +2,18 @@
 #include <string>
 #include <unordered_map>
 
-#include "Student.h"
+#include "Student.hpp"
+
+using namespace std;
+
 
 Student::Student(){
-
+	gpa = -1.0;
+	name = "DEFAULT STUDENT NAME";
 }
 
 Student::Student(string name) {
+	gpa = -1.0;
 	this->name = name;
 }
 
@@ -50,3 +55,4 @@ bool Student::findProject(const string &projectName) {
 		return true; /* found */
 	}
 }
+
