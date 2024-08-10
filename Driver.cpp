@@ -7,7 +7,7 @@
 using namespace std;
 
 int test1() {
-	string inputName = "John";
+	string inputName = "John S";
 	Student* new_student = new Student(inputName);
 	string name = new_student->getName();
 	cout << "This is the studentname: " << name << endl;
